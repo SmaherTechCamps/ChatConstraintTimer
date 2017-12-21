@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private static final int TIME_INTERVAL = 2000;
     private long mBackPressed;
 
     @Override
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         else {
-            Toast.makeText(getBaseContext(), "أضـغـط مرتـين للـخروج", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "أضـغـط مرتين للـخروج", Toast.LENGTH_SHORT).show();
         }
 
         mBackPressed = System.currentTimeMillis();
