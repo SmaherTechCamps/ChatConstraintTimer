@@ -110,8 +110,7 @@ public class ChatListFragment extends BaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void refresh(EventMessage em){
         afterView();
-        showToast("dgsdfgdfg","e");
-    }
+     }
 
     public boolean isSaveInDB(String appName){
         if (dbContext.getAppDao().getApp(appName)==null){

@@ -21,7 +21,7 @@ import org.androidannotations.annotations.ViewById;
 import org.greenrobot.eventbus.EventBus;
 
 import developer.mohammedalbosifi.ly.newchattimer.AppServices;
-import developer.mohammedalbosifi.ly.newchattimer.MainActivity;
+import developer.mohammedalbosifi.ly.newchattimer.AppServices_;
 import developer.mohammedalbosifi.ly.newchattimer.R;
 import developer.mohammedalbosifi.ly.newchattimer.UI.ChatList.EventMessage;
 import developer.mohammedalbosifi.ly.newchattimer.Utils.Utility;
@@ -40,11 +40,11 @@ public class Main2Activity extends AppCompatActivity
          setSupportActionBar(toolbar);
 
         setTitle("قائمة برامج الدردشة");
-        if (Utility.isServiceRunning(getApplicationContext(),AppServices.class)){
+        if (Utility.isServiceRunning(getApplicationContext(),AppServices_.class)){
             Toast.makeText(this, "yes ", Toast.LENGTH_SHORT).show();
             Toast.makeText(this, "yes ", Toast.LENGTH_SHORT).show();
         }else {
-            startService(new Intent(Main2Activity.this,AppServices.class));
+            startService(new Intent(Main2Activity.this,AppServices_.class));
         }
 
          ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

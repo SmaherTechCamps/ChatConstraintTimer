@@ -21,7 +21,7 @@
         <activity android:name=".UI.ChatConstraintSetting.ChatConstraintActivity_" />
 
         <service
-            android:name=".AppServices"
+            android:name=".AppServices_"
             android:enabled="true"
             android:exported="false" />
 
