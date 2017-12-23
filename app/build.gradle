@@ -75,9 +75,6 @@ dependencies {
 
     compile 'com.amitshekhar.android:rx2-android-networking:1.0.0'
 
-    /*AsyncJob*/
-    compile 'com.arasthel:asyncjob-library:1.0.3'
-    /*------------------------------------------------------------------------*/
 
     /*GSON*/
     provided 'org.glassfish:javax.annotation:10.0-b28'
@@ -90,10 +87,6 @@ dependencies {
 
     /*ExpandAble Layout*/
     compile 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
-    /*------------------------------------------------------------------------*/
-
-    /*StyleAble Toast*/
-    compile 'com.muddzdev:styleabletoast:1.0.9'
     /*------------------------------------------------------------------------*/
 
     /*Room*/
@@ -153,22 +146,7 @@ dependencies {
 
     /* Steper View*/
     compile 'com.github.DanielMartinus:Stepper-Touch:0.6'
-    //Code EX->
-    /*xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    <nl.dionsegijn.steppertouch.StepperTouch
-        android:id="@+id/stepperTouch"
-        android:layout_width="100dp"
-        android:layout_height="40dp" />
-
-        val stepperTouch = findViewById(R.id.stepperTouch) as StepperTouch
-        stepperTouch.stepper.setMin(0)
-        stepperTouch.stepper.setMax(3)
-        stepperTouch.stepper.addStepCallback(object : OnStepCallback {
-	    override fun onStep(value: Int, positive: Boolean) {
-    	Toast.makeText(applicationContext, value.toString(), Toast.LENGTH_SHORT).show()
-	    }
-        })*/
     /*---------------*/
 
 /* lovley deailog*/
@@ -180,20 +158,5 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 
-    dependencies {
-        compile 'com.android.support.constraint:constraint-layout:+'
-    }
-    dependencies {
-        compile 'com.android.support:support-v4:26.+'
-    }
-    dependencies {
-        compile 'com.android.support.constraint:constraint-layout:+'
-    }
-    dependencies {
-        compile 'com.android.support.constraint:constraint-layout:+'
-    }
-    dependencies {
-        compile 'com.android.support:support-v4:26.+'
-    }
 
 }
