@@ -156,6 +156,7 @@ dependencies {
 //    https://github.com/yarolegovich/LovelyDialog
 /*------------------*/
 
+    compile 'com.yarolegovich:lovely-dialog:1.0.7'
 
 
     testCompile 'junit:junit:4.12'

@@ -22,12 +22,13 @@ import org.greenrobot.eventbus.EventBus;
 
 import developer.mohammedalbosifi.ly.newchattimer.AppServices;
 import developer.mohammedalbosifi.ly.newchattimer.AppServices_;
+import developer.mohammedalbosifi.ly.newchattimer.Base.BaseActivity;
 import developer.mohammedalbosifi.ly.newchattimer.R;
 import developer.mohammedalbosifi.ly.newchattimer.UI.ChatList.EventMessage;
 import developer.mohammedalbosifi.ly.newchattimer.Utils.Utility;
 
 @EActivity(R.layout.activity_main2)
-public class Main2Activity extends AppCompatActivity
+public class Main2Activity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @ViewById  Toolbar toolbar;
@@ -97,6 +98,7 @@ public class Main2Activity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             EventBus.getDefault().postSticky(new EventMessage(true));
+            showLovleyDialog();
             return true;
         }
 

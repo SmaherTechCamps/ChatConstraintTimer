@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.valdesekamdem.library.mdtoast.MDToast;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.App;
@@ -20,6 +21,7 @@ import org.androidannotations.annotations.UiThread;
 
 import developer.mohammedalbosifi.ly.newchattimer.Application.AppInstanse;
 import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDataBase;
+import developer.mohammedalbosifi.ly.newchattimer.R;
 
 /**
  * Created by Mohammed_Albosifi on 22/10/17.
@@ -111,6 +113,22 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public boolean isEmpty(TextView myTextView) {
         return myTextView.getText().toString().trim().length() == 0;
+    }
+
+    public void showLovleyDialog(){
+        new LovelyStandardDialog(this)
+                .setTopColorRes(R.color.RED)
+                .setButtonsColorRes(R.color.RED_DARK)
+                .setIcon(R.drawable.ic_loop)
+                .setTitle(R.string.title_activity_main2)
+                .setMessage("fgdfgfgdfgd")
+                .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                     }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .show();
     }
 
 
