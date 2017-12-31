@@ -11,6 +11,13 @@
         app:showAsAction="ifRoom|withText"
         />
     <item
+        android:id="@+id/CancelTimeSetting"
+        android:orderInCategory="100"
+        android:title="ألغاء ضبط التوقيت"
+        android:icon="@drawable/ic_access_time"
+        app:showAsAction="ifRoom|withText"
+        />
+    <item
         android:id="@+id/unInstal"
         android:orderInCategory="100"
         android:title="ألغاء التتبيت"

@@ -47,6 +47,9 @@ public class ChatConstraintActivity extends BaseActivity {
         tvAppName.setText("أسم التطبيق  : " + bundle.getString("appPackage") + " / " + bundle.getString("appName"));
         appName = bundle.getString("appPackage");
         appName2 = bundle.getString("appName");
+
+
+
         String isSetting = bundle.getString("isSetting");
         setTitle(bundle.getString("appName"));
 
@@ -70,10 +73,10 @@ public class ChatConstraintActivity extends BaseActivity {
             ivImage.setImageResource(R.drawable.ic_line);
         }
 
-        if (dbContext.getAppDao().getApp(appName2) != null) {
-            stepperTouch.stepper.setValue(dbContext.getAppDao().getApp(appName2).getHour());
-            stepperTouch2.stepper.setValue(dbContext.getAppDao().getApp(appName2).getMinth());
-            stepperTouch3.stepper.setValue(dbContext.getAppDao().getApp(appName2).getSecond());
+        if (dbContext.getAppDao().getApp(appName) != null) {
+            stepperTouch.stepper.setValue(dbContext.getAppDao().getApp(appName).getHour());
+            stepperTouch2.stepper.setValue(dbContext.getAppDao().getApp(appName).getMinth());
+            stepperTouch3.stepper.setValue(dbContext.getAppDao().getApp(appName).getSecond());
         }
 
         stepperTouch.stepper.setMin(0);
@@ -123,14 +126,14 @@ public class ChatConstraintActivity extends BaseActivity {
 
         AppDao appDao = dbContext.getAppDao();
         if (timeSum > 0) {
-            if (appDao.getApp(appName2) != null) {
-                appDao.deleteApp(appDao.getApp(appName2));
+            if (appDao.getApp(appName) != null) {
+                appDao.deleteApp(appDao.getApp(appName));
             }
-            appDao.insertApp(new ChatEntity(appName2, timeSum, getInt(tvHour.getText().toString()), getInt(tvMints.getText().toString()), getInt(tvSecond.getText().toString())));
-            showToast("تم حفظ البيانات بنجاح", "d");
+            appDao.insertApp(new ChatEntity(appName, timeSum, getInt(tvHour.getText().toString()), getInt(tvMints.getText().toString()), getInt(tvSecond.getText().toString())));
+            showToast("تم حفظ البيانات بنجاح", "s");
         } else {
-            if (appDao.getApp(appName2) != null) {
-                appDao.deleteApp(appDao.getApp(appName2));
+            if (appDao.getApp(appName) != null) {
+                appDao.deleteApp(appDao.getApp(appName));
             }
         }
         EventBus.getDefault().postSticky(new EventMessage(true));
@@ -149,7 +152,7 @@ public class ChatConstraintActivity extends BaseActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+     }
 
 
 }

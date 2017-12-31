@@ -1,26 +1,35 @@
 package developer.mohammedalbosifi.ly.newchattimer.UI.Main;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+
+import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
+
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.github.angads25.filepicker.controller.DialogSelectionListener;
+import com.github.angads25.filepicker.model.DialogConfigs;
+import com.github.angads25.filepicker.model.DialogProperties;
+import com.github.angads25.filepicker.view.FilePickerDialog;
+
 import org.androidannotations.annotations.AfterViews;
+
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.greenrobot.eventbus.EventBus;
 
-import developer.mohammedalbosifi.ly.newchattimer.AppServices;
+import java.io.File;
+import java.io.IOException;
+
 import developer.mohammedalbosifi.ly.newchattimer.AppServices_;
 import developer.mohammedalbosifi.ly.newchattimer.Base.BaseActivity;
 import developer.mohammedalbosifi.ly.newchattimer.R;
@@ -30,30 +39,32 @@ import developer.mohammedalbosifi.ly.newchattimer.Utils.Utility;
 @EActivity(R.layout.activity_main2)
 public class Main2Activity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+     @ViewById
+    Toolbar toolbar;
+    @ViewById
+    DrawerLayout drawer;
+    @ViewById
+    NavigationView navigationView;
 
-    @ViewById  Toolbar toolbar;
-    @ViewById FloatingActionButton fab;
-    @ViewById DrawerLayout drawer;
-    @ViewById NavigationView navigationView;
     @AfterViews
     protected void afterView() {
 
-         setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         setTitle("قائمة برامج الدردشة");
-        if (Utility.isServiceRunning(getApplicationContext(),AppServices_.class)){
-            Toast.makeText(this, "yes ", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "yes ", Toast.LENGTH_SHORT).show();
-        }else {
-            startService(new Intent(Main2Activity.this,AppServices_.class));
+        if (!Utility.isServiceRunning(getApplicationContext(), AppServices_.class)) {
+            startService(new Intent(Main2Activity.this, AppServices_.class));
         }
 
-         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+
     }
 
 
@@ -62,24 +73,20 @@ public class Main2Activity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-         if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-             if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
-             {
-                 super.onBackPressed();
-                 return;
-             }
-             else {
-                 Toast.makeText(getBaseContext(), "أضـغـط مرتين للـخروج", Toast.LENGTH_SHORT).show();
-             }
-
-             mBackPressed = System.currentTimeMillis();
-         }
+            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+                super.onBackPressed();
+                return;
+            } else {
+                Toast.makeText(getBaseContext(), "أضـغـط مرتين للـخروج", Toast.LENGTH_SHORT).show();
+            }
+            mBackPressed = System.currentTimeMillis();
+        }
 
 
-
-     }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,7 +105,6 @@ public class Main2Activity extends BaseActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             EventBus.getDefault().postSticky(new EventMessage(true));
-            showLovleyDialog();
             return true;
         }
 
@@ -111,21 +117,21 @@ public class Main2Activity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        if (id == R.id.nav_aaps_list) {
+            EventBus.getDefault().postSticky(new EventMessage(true));
+        } else if (id == R.id.nav_charts) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_about) {
+
+        } else if (id == R.id.about_developers) {
 
         }
 
-         drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

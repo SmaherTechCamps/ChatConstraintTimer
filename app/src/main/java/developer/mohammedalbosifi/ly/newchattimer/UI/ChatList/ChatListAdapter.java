@@ -1,6 +1,7 @@
 package developer.mohammedalbosifi.ly.newchattimer.UI.ChatList;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
@@ -88,10 +89,13 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.mViewH
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()){
                                 case R.id.unInstal:
-                                    listener.onItemClick(tvPacckageName.getText().toString().trim());
+                                    listener.onUnInstallApp(tvPacckageName.getText().toString().trim());
                                     break;
                                 case R.id.timeSetting:
                                     startActivity();
+                                    break;
+                                case R.id.CancelTimeSetting:
+                                    listener.onCancelTimeSetting(tvName.getText().toString().trim());
                                     break;
 
                             }
@@ -99,6 +103,12 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.mViewH
                         }
                     });
                     popupMenu.inflate(R.menu.chat_menu);
+                    if (isSetting){
+                        popupMenu.getMenu().getItem(0).setVisible(false);
+                        popupMenu.getMenu().getItem(1).setVisible(true);
+                    }else {
+                        popupMenu.getMenu().getItem(1).setVisible(false);
+                        popupMenu.getMenu().getItem(0).setVisible(true);                    }
                     popupMenu.show();
                 }
             });
@@ -112,16 +122,22 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.mViewH
         }
 
         public void startActivity(){
-            Intent intent=new Intent(context, ChatConstraintActivity_.class);
-            intent.putExtra("appName",tvName.getText().toString().trim());
-            intent.putExtra("appPackage",tvPacckageName.getText().toString().trim());
-            intent.putExtra("isSetting",(isSetting) ? "true":"false" );
+//            Intent intent=new Intent(context, ChatConstraintActivity_.class);
+//            intent.putExtra("appName",tvName.getText().toString().trim());
+//            intent.putExtra("appPackage",tvPacckageName.getText().toString().trim());
+//            intent.putExtra("isSetting",(isSetting) ? "true":"false" );
+//
+//            context.startActivity(intent);
 
-            context.startActivity(intent);
+            Intent myIntent = new Intent(context, ChatConstraintActivity_.class);
+            ActivityOptions options =
+                    ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, R.anim.fade_out);
+            context.startActivity(myIntent, options.toBundle());
         }
     }
 
     public interface onClickItem{
-        void onItemClick(String packageName);
+        void onUnInstallApp(String packageName);
+        void onCancelTimeSetting(String appName);
     }
 }

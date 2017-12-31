@@ -30,5 +30,8 @@ public interface AppDao {
     @Query("select * from ChatEntity")
     List<ChatEntity> getAppList();
 
+    @Query("delete from ChatEntity where appName=:appName ")
+    void deleteAppByName(String appName);
+
 
 }
