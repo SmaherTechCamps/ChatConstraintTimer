@@ -27,9 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UI.ChartsActivity.ChartActivity">
 
+        </activity>
 
-        <activity android:name=".UI.ChartsActivity.ChartActivity_" >
+        <activity android:name=".UI.ChartsActivity.ChatView">
 
         </activity>
         <service

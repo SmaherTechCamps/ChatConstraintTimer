@@ -130,6 +130,9 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.mViewH
 //            context.startActivity(intent);
 
             Intent myIntent = new Intent(context, ChatConstraintActivity_.class);
+            myIntent.putExtra("appName",tvName.getText().toString().trim());
+            myIntent.putExtra("appPackage",tvPacckageName.getText().toString().trim());
+            myIntent.putExtra("isSetting",(isSetting) ? "true":"false" );
             ActivityOptions options =
                     ActivityOptions.makeCustomAnimation(context, R.anim.fade_in, R.anim.fade_out);
             context.startActivity(myIntent, options.toBundle());

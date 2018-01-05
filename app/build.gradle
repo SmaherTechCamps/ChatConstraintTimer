@@ -33,6 +33,9 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:+'
 }
 dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -63,15 +66,8 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
     /*------------------------------------------------------------------------*/
 
+    /*FAST NETWORK LIBRARY*/
     compile 'com.amitshekhar.android:rx2-android-networking:1.0.0'
-
-    /*GSON*/
-    provided 'org.glassfish:javax.annotation:10.0-b28'
-    compile 'com.google.code.gson:gson:2.8.2'
-    /*------------------------------------------------------------------------*/
-
-    // progress
-    compile 'com.wang.avi:library:2.1.3'
     /*------------------------------------------------------------------------*/
 
     /*ExpandAble Layout*/
@@ -85,72 +81,31 @@ dependencies {
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-rc1';
     /*------------------------------------------------------------------------*/
 
-    /*Dagger 2*/
-    compile 'com.google.dagger:dagger-android:2.12'
-    compile 'com.google.dagger:dagger-android-support:2.12'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.12'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
-    androidTestCompile 'com.google.code.findbugs:jsr305:3.0.1'
-
-    /*------------------------------------------------------------------------*/
-
-    /*Blurry*/
-    compile 'jp.wasabeef:blurry:2.1.1'
-/*
-* Blurry.with(context)
-  .radius(10)
-  .sampling(8)
-  .color(Color.argb(66, 255, 255, 0))
-  .async()
-  .animate(500)
-  .onto(rootView);
-  */
-    /*END Blurry*/
-
-    /*------------------------------------------------------------------------*/
-    /*swip layout*/
-    compile "com.daimajia.swipelayout:library:1.2.0@aar"
-    /*END swip layout*/
-    /*------------------------------------------------------------------------*/
-
-    /*------------------------------------------------------------------------*/
-    /*percent layout*/
-    compile 'com.android.support:percent:26.+' // Percent Support Library
-
-    /*------------------------------------------------------------------------*/
-
-    /*------------------------------------------------------------------------*/
     /*MDToast*/
     compile 'com.valdesekamdem.library:md-toast:0.9.0'
-
-    /*floating action button menue*/
-
-    compile 'com.github.clans:fab:1.6.4'
+    /*------------------------------------------------------------------------*/
 
     /*SDP layout Size*/
     compile 'com.intuit.sdp:sdp-android:1.0.5'
-
-
-    compile 'com.mapzen.android:speakerbox:1.4.1'
+    /*------------------------------------------------------------------------*/
 
     /* Steper View*/
     compile 'com.github.DanielMartinus:Stepper-Touch:0.6'
+    /*------------------------------------------------------------------------*/
 
-    /*---------------*/
-
-/* lovley deailog*/
+    /* lovley deailog*/
     compile 'com.yarolegovich:lovely-dialog:1.0.7'
-//    https://github.com/yarolegovich/LovelyDialog
-/*------------------*/
+    //    https://github.com/yarolegovich/LovelyDialog
+    /*------------------------------------------------------------------------*/
 
-    compile 'com.github.lecho:hellocharts-android:v1.5.8'
+    //compile 'com.github.lecho:hellocharts-android:v1.5.8'
 
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    //implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     compile 'com.github.blackfizz:eazegraph:1.2.2@aar'
-    compile 'com.nineoldandroids:library:2.4.0'
+    //compile 'com.nineoldandroids:library:2.4.0'
 
-    compile 'com.github.angads25:filepicker:1.1.1'
+    //compile 'com.github.angads25:filepicker:1.1.1'
 
     testCompile 'junit:junit:4.12'
 

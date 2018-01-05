@@ -1,11 +1,9 @@
 package developer.mohammedalbosifi.ly.newchattimer.UI.Main;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 
-import android.content.pm.PackageManager;
-import android.media.MediaPlayer;
-
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,10 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.github.angads25.filepicker.controller.DialogSelectionListener;
-import com.github.angads25.filepicker.model.DialogConfigs;
-import com.github.angads25.filepicker.model.DialogProperties;
-import com.github.angads25.filepicker.view.FilePickerDialog;
 
 import org.androidannotations.annotations.AfterViews;
 
@@ -27,13 +21,13 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.List;
 
 import developer.mohammedalbosifi.ly.newchattimer.AppServices_;
 import developer.mohammedalbosifi.ly.newchattimer.Base.BaseActivity;
 import developer.mohammedalbosifi.ly.newchattimer.R;
-import developer.mohammedalbosifi.ly.newchattimer.UI.ChatList.EventMessage;
+import developer.mohammedalbosifi.ly.newchattimer.UI.ChartsActivity.ChartActivity;
+ import developer.mohammedalbosifi.ly.newchattimer.UI.ChatList.EventMessage;
 import developer.mohammedalbosifi.ly.newchattimer.Utils.Utility;
 
 @EActivity(R.layout.activity_main2)
@@ -120,7 +114,7 @@ public class Main2Activity extends BaseActivity
         if (id == R.id.nav_aaps_list) {
             EventBus.getDefault().postSticky(new EventMessage(true));
         } else if (id == R.id.nav_charts) {
-
+            startActivity(new Intent(this,ChartActivity.class));
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_about) {

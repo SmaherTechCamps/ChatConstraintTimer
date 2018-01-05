@@ -1,33 +1,31 @@
 package developer.mohammedalbosifi.ly.newchattimer;
 
+import android.app.ActivityManager;
 import android.app.Service;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.widget.Toast;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.App;
 import org.androidannotations.annotations.EService;
 import org.androidannotations.annotations.UiThread;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import developer.mohammedalbosifi.ly.newchattimer.Application.AppInstanse;
-import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDataBase;
+ import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDataBase;
 import developer.mohammedalbosifi.ly.newchattimer.DataBase.ChatEntity;
-import developer.mohammedalbosifi.ly.newchattimer.UI.ChatList.ChatListItem;
 
 @EService
 public class AppServices extends Service {
 
 
     AppDataBase dbContext;
-
-
+    ActivityManager activityManager ;
+    List<ActivityManager.RunningTaskInfo> tasks;
     @Override
     public IBinder onBind(Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
@@ -36,7 +34,11 @@ public class AppServices extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+
         dbContext = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "chat_db").allowMainThreadQueries().build();
+        activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);
 
         Thread t=new Thread(new Runnable() {
             @Override
@@ -59,14 +61,10 @@ public class AppServices extends Service {
     @UiThread
     public void tt() {
         List<ChatEntity> chatEntities=new ArrayList<>();
-        chatEntities=dbContext.getAppDao().getAppList();
+            chatEntities=dbContext.getAppDao().getAppList();
         for (ChatEntity ce:chatEntities){
-            if (isRun(ce.getAppName())){
-                Toast.makeText(this, ce.getAppName(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, ce.getAppName(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, ce.getAppName(), Toast.LENGTH_SHORT).show();
-            }
-        }
+            isRun(ce.getAppName());
+         }
      }
 
     @Override
@@ -75,36 +73,18 @@ public class AppServices extends Service {
         super.onDestroy();
     }
 
-
-    public boolean isRun(String packName) {
-        String packageName = "";
-        boolean isRun = false;
-        PackageManager pm = getPackageManager();
-        List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-        for (ApplicationInfo packageInfo : packages) {
-            packageName = packageInfo.packageName;
-            if (packageInfo.packageName.contains(packName)) {
-                isRun = true;
-            } else if (packageName.contains(packName)) {
-                isRun = true;
-            } else if (packageName.contains(packName)) {
-                isRun = true;
-            } else if (packageName.contains(packName)) {
-                isRun = true;
-            } else if (packageName.contains(packName)) {
-                isRun = true;
-            } else if (packageName.contains(packName)) {
-                isRun = true;
-            } else if (packageName.contains(packName)) {
-                isRun = true;
-            } else if (packageName.contains(packName)) {
-                isRun = true;
-            } else if (packageName.contains(packName)) {
-                isRun = true;
+    @UiThread
+    public void isRun(String appName) {
+        for (int i = 0; i < tasks.size(); i++) {
+            Toast.makeText(this, tasks.get(i).baseActivity.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, tasks.get(i).baseActivity.toString(), Toast.LENGTH_SHORT).show();
+            if (tasks.get(i).baseActivity.toString().contains(appName)){
+                ChatEntity ce=dbContext.getAppDao().getApp(appName);
+                ce.setSecondCount(ce.getSecondCount()-1);
+                dbContext.getAppDao().updateApp(ce);
+                Toast.makeText(this,dbContext.getAppDao().getApp(appName).getSecondCount()+"" , Toast.LENGTH_SHORT).show();
             }
         }
-        return isRun;
-
-    }
+     }
 }
 

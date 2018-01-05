@@ -115,21 +115,53 @@ public abstract class BaseActivity extends AppCompatActivity {
         return myTextView.getText().toString().trim().length() == 0;
     }
 
-    public void showLovleyDialog(){
-        new LovelyStandardDialog(this)
-                .setTopColorRes(R.color.RED)
-                .setButtonsColorRes(R.color.RED_DARK)
-                .setIcon(R.drawable.ic_loop)
-                .setTitle(R.string.title_activity_main2)
-                .setMessage("fgdfgfgdfgd")
-                .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                     }
-                })
-                .setNegativeButton(android.R.string.no, null)
-                .show();
-    }
+    public void showLovleyDialog(String... parms) {
+        if (parms[2] == "e") {
+            new LovelyStandardDialog(this)
+                    .setTopColorRes(R.color.RED)
+                    .setButtonsColorRes(R.color.RED_DARK)
+                    .setIcon(R.drawable.ic_loop)
+                    .setTitle(parms[1])
+                    .setMessage(parms[0])
+                    .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .show();
+        }
+        if (parms[2] == "s") {
+            new LovelyStandardDialog(this)
+                    .setTopColorRes(R.color.LIGHT_GREEN)
+                    .setButtonsColorRes(R.color.GREEN)
+                    .setIcon(R.drawable.ic_loop)
+                    .setTitle(parms[1])
+                    .setMessage(parms[0])
+                    .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .show();
+        }
 
+        if (parms[3] == "i") {
+            new LovelyStandardDialog(this)
+                    .setTopColorRes(R.color.INFO)
+                    .setButtonsColorRes(R.color.BLUE)
+                    .setIcon(R.drawable.ic_info_white_24dp)
+                    .setTitle(parms[1])
+                    .setMessage(parms[0])
+                    .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .show();
+        }
+    }
 
 }
