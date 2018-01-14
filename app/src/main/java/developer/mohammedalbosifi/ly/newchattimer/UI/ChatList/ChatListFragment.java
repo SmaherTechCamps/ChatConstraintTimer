@@ -62,28 +62,27 @@ public class ChatListFragment extends BaseFragment {
         pbLoad.setVisibility(View.VISIBLE);
         PackageManager pm = getContext().getPackageManager();
         List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-        String[] Installed_App_List = new String[packages.size()];
         chatListItems = new ArrayList<>();
         String packageName = "";
         for (ApplicationInfo packageInfo : packages) {
             packageName = packageInfo.packageName;
-            if (packageInfo.packageName.contains("facebook.orca")) {
+            if (packageInfo.packageName.toLowerCase().contains("facebook.orca")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_facebook2, "Facebook", isSaveInDB("Facebook")));
-            } else if (packageName.contains("whatsapp")) {
+            } else if (packageName.toLowerCase().contains("whatsapp")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_whatsapp, "WhatsApp", isSaveInDB("WhatsApp")));
-            } else if (packageName.contains("instagram")) {
+            } else if (packageName.toLowerCase().contains("instagram")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_instagram, "Instagram", isSaveInDB("Instagram")));
-            } else if (packageName.contains("facebook.lite")) {
+            } else if (packageName.toLowerCase().contains("facebook.lite")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_facebook_lite, "Facebook Lite", isSaveInDB("Facebook Lite")));
-            } else if (packageName.contains("twitter")) {
+            } else if (packageName.toLowerCase().contains("twitter")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_twitter, "Twitter", isSaveInDB("Twitter")));
-            } else if (packageName.contains("viber")) {
+            } else if (packageName.toLowerCase().contains("viber")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_viber, "Viber", isSaveInDB("Viber")));
-            } else if (packageName.contains("skype")) {
+            } else if (packageName.toLowerCase().contains("skype")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_skype, "Skype", isSaveInDB("Skype")));
-            } else if (packageName.contains("telegram")) {
+            } else if (packageName.toLowerCase().contains("telegram")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_telegram, "Telegram", isSaveInDB("Telegram")));
-            } else if (packageName.contains("line")) {
+            } else if (packageName.toLowerCase().contains("line")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_line, "Liine", isSaveInDB("Liine")));
             }
         }
@@ -118,8 +117,8 @@ public class ChatListFragment extends BaseFragment {
                             .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    if (dbContext.getAppDao().getApp(appName) != null) {
-                                        dbContext.getAppDao().deleteAppByName(appName);
+                                    if (dbContext.getAppDao().getApp(appName.toLowerCase()) != null) {
+                                        dbContext.getAppDao().deleteAppByName(appName.toLowerCase());
                                         showToast("تم ألغاء الضبط بنجاح", "s");
 
                                         afterView();
@@ -140,7 +139,7 @@ public class ChatListFragment extends BaseFragment {
     }
 
     public boolean isSaveInDB(String appName) {
-        if (dbContext.getAppDao().getApp(appName) == null) {
+        if (dbContext.getAppDao().getApp(appName.toLowerCase()) == null) {
             return false;
         } else {
             return true;

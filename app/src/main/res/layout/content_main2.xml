@@ -18,6 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
+        <fragment
+            android:id="@+id/frag2"
+            android:name="developer.mohammedalbosifi.ly.newchattimer.UI.About.AboutFragment_"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -16,16 +16,21 @@ import org.androidannotations.annotations.UiThread;
 import java.util.ArrayList;
 import java.util.List;
 
- import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDataBase;
+import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDao;
+import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDataBase;
 import developer.mohammedalbosifi.ly.newchattimer.DataBase.ChatEntity;
 
 @EService
 public class AppServices extends Service {
 
-
+    int secondCount2 = 0;
+    ChatEntity ce;
     AppDataBase dbContext;
-    ActivityManager activityManager ;
+    ActivityManager activityManager;
     List<ActivityManager.RunningTaskInfo> tasks;
+    List<ActivityManager.RunningAppProcessInfo> procInfos;
+    AppDao appDao;
+
     @Override
     public IBinder onBind(Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
@@ -34,19 +39,17 @@ public class AppServices extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
         dbContext = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "chat_db").allowMainThreadQueries().build();
         activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);
-
-        Thread t=new Thread(new Runnable() {
+        appDao = dbContext.getAppDao();
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true){
+                while (true) {
                     tt();
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -58,14 +61,16 @@ public class AppServices extends Service {
     }
 
 
-    @UiThread
     public void tt() {
-        List<ChatEntity> chatEntities=new ArrayList<>();
-            chatEntities=dbContext.getAppDao().getAppList();
-        for (ChatEntity ce:chatEntities){
-            isRun(ce.getAppName());
-         }
-     }
+        List<ChatEntity> chatEntities = new ArrayList<>();
+        chatEntities = dbContext.getAppDao().getAppList();
+        if (chatEntities.size() > 0) {
+            for (ChatEntity ce : chatEntities) {
+                isRun(ce.getAppName());
+            }
+        }
+
+    }
 
     @Override
     public void onDestroy() {
@@ -75,16 +80,23 @@ public class AppServices extends Service {
 
     @UiThread
     public void isRun(String appName) {
+        tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);
         for (int i = 0; i < tasks.size(); i++) {
-            Toast.makeText(this, tasks.get(i).baseActivity.toString(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, tasks.get(i).baseActivity.toString(), Toast.LENGTH_SHORT).show();
-            if (tasks.get(i).baseActivity.toString().contains(appName)){
-                ChatEntity ce=dbContext.getAppDao().getApp(appName);
-                ce.setSecondCount(ce.getSecondCount()-1);
-                dbContext.getAppDao().updateApp(ce);
-                Toast.makeText(this,dbContext.getAppDao().getApp(appName).getSecondCount()+"" , Toast.LENGTH_SHORT).show();
+
+            if (tasks.get(i).baseActivity.toString().toLowerCase().contains(appName.toLowerCase())) {
+                ce = appDao.getApp(appName.toLowerCase());
+                secondCount2 = ce.getSecondCount2();
+                Toast.makeText(this, secondCount2+"", Toast.LENGTH_SHORT).show();
+                ce.setSecondCount2(secondCount2 + 5000);
+                Toast.makeText(this, ce.getSecondCount2()+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, ce.getSecondCount()+"", Toast.LENGTH_SHORT).show();
+                appDao.updateApp(ce);
+                if (secondCount2 >= ce.getSecondCount()) {
+                    Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show();
+                }
             }
         }
-     }
+
+    }
 }
 

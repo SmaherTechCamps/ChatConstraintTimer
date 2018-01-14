@@ -21,11 +21,15 @@ public class ChatEntity {
     private int secondCount;
 
     @ColumnInfo
+    private int secondCount2;
+
+    @ColumnInfo
     private int hour,minth,second;
 
-    public ChatEntity(String appName, int secondCount, int hour, int minth, int second) {
+    public ChatEntity(String appName, int secondCount,int secondCount2, int hour, int minth, int second) {
         this.appName = appName;
         this.secondCount = secondCount;
+        this.secondCount2 = secondCount2;
         this.hour = hour;
         this.minth = minth;
         this.second = second;
@@ -69,5 +73,13 @@ public class ChatEntity {
 
     public void setSecond(int second) {
         this.second = second;
+    }
+
+    public int getSecondCount2() {
+        return secondCount2;
+    }
+
+    public void setSecondCount2(int secondCount2) {
+        this.secondCount2 = secondCount2;
     }
 }

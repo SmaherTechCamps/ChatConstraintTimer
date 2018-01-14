@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 
@@ -118,7 +119,8 @@ public class Main2Activity extends BaseActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_about) {
-
+            findViewById(R.id.frag1).setVisibility(View.GONE);
+            findViewById(R.id.frag2).setVisibility(View.VISIBLE);
         } else if (id == R.id.about_developers) {
 
         }

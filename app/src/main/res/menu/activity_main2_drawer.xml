@@ -25,10 +25,7 @@
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_info_white_24dp"
                 android:title="حول التطبيق" />
-            <item
-                android:id="@+id/about_developers"
-                android:icon="@drawable/ic_menu_send"
-                android:title="حول المطورين" />
+
         </menu>
     </item>
 

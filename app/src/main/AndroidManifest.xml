@@ -27,13 +27,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.ChartsActivity.ChartActivity">
-
-        </activity>
+        <activity android:name=".UI.ChartsActivity.ChartActivity"/>
 
         <activity android:name=".UI.ChartsActivity.ChatView">
 
         </activity>
+
+
         <service
             android:name=".AppServices_"
             android:enabled="true"

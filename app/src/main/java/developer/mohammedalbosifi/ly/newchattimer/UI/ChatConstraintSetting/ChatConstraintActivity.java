@@ -70,10 +70,11 @@ public class ChatConstraintActivity extends BaseActivity {
             ivImage.setImageResource(R.drawable.ic_line);
         }
 
-        if (dbContext.getAppDao().getApp(appName2) != null) {
-            stepperTouch.stepper.setValue(dbContext.getAppDao().getApp(appName2).getHour());
-            stepperTouch2.stepper.setValue(dbContext.getAppDao().getApp(appName2).getMinth());
-            stepperTouch3.stepper.setValue(dbContext.getAppDao().getApp(appName2).getSecond());
+        if (dbContext.getAppDao().getApp(appName2.toLowerCase()) != null) {
+            stepperTouch.stepper.setValue(dbContext.getAppDao().getApp(appName2.toLowerCase()).getHour());
+            stepperTouch2.stepper.setValue(dbContext.getAppDao().getApp(appName2.toLowerCase()).getMinth());
+            stepperTouch3.stepper.setValue(dbContext.getAppDao().getApp(appName2.toLowerCase()).getSecond());
+            btnSave.setText("تعديل التوقيت");
         }
 
         stepperTouch.stepper.setMin(0);
@@ -119,18 +120,18 @@ public class ChatConstraintActivity extends BaseActivity {
 
     @Click
     public void btnSave() {
-        int timeSum = getInt(tvHour.getText().toString()) * 60 * 60 + getInt(tvMints.getText().toString()) * 60 + getInt(tvSecond.getText().toString());
+        int timeSum = getInt(tvHour.getText().toString()) * 60 * 60  + getInt(tvMints.getText().toString()) * 60 + getInt(tvSecond.getText().toString());
 
         AppDao appDao = dbContext.getAppDao();
         if (timeSum > 0) {
-            if (appDao.getApp(appName2) != null) {
-                appDao.deleteApp(appDao.getApp(appName2));
+            if (appDao.getApp(appName2.toLowerCase()) != null) {
+                appDao.deleteApp(appDao.getApp(appName2.toLowerCase()));
             }
-            appDao.insertApp(new ChatEntity(appName2, timeSum, getInt(tvHour.getText().toString()), getInt(tvMints.getText().toString()), getInt(tvSecond.getText().toString())));
+            appDao.insertApp(new ChatEntity(appName2.toLowerCase(), timeSum,0, getInt(tvHour.getText().toString()), getInt(tvMints.getText().toString()), getInt(tvSecond.getText().toString())));
             showToast("تم حفظ البيانات بنجاح", "s");
         } else {
-            if (appDao.getApp(appName2) != null) {
-                appDao.deleteApp(appDao.getApp(appName2));
+            if (appDao.getApp(appName2.toLowerCase()) != null) {
+                appDao.deleteApp(appDao.getApp(appName2.toLowerCase()));
             }
         }
         EventBus.getDefault().postSticky(new EventMessage(true));
