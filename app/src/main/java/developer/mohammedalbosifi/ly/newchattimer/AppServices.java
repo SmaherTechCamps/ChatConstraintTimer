@@ -87,7 +87,7 @@ public class AppServices extends Service {
                 ce = appDao.getApp(appName.toLowerCase());
                 secondCount2 = ce.getSecondCount2();
                 Toast.makeText(this, secondCount2+"", Toast.LENGTH_SHORT).show();
-                ce.setSecondCount2(secondCount2 + 5000);
+                ce.setSecondCount2(secondCount2 + 5);
                 Toast.makeText(this, ce.getSecondCount2()+"", Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, ce.getSecondCount()+"", Toast.LENGTH_SHORT).show();
                 appDao.updateApp(ce);
