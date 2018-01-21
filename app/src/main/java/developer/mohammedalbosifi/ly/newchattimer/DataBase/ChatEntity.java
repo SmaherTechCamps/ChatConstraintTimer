@@ -18,21 +18,29 @@ public class ChatEntity {
     private String appName;
 
     @ColumnInfo
+    private int imageID;
+
+    @ColumnInfo
     private int secondCount;
 
     @ColumnInfo
     private int secondCount2;
 
     @ColumnInfo
-    private int hour,minth,second;
+    private int hour, minth, second;
 
-    public ChatEntity(String appName, int secondCount,int secondCount2, int hour, int minth, int second) {
+    @ColumnInfo
+    private boolean ifDialofIsShow;
+
+    public ChatEntity(String appName, int imageID, int secondCount, int secondCount2, int hour, int minth, int second, boolean ifDialofIsShow) {
         this.appName = appName;
+        this.imageID = imageID;
         this.secondCount = secondCount;
         this.secondCount2 = secondCount2;
         this.hour = hour;
         this.minth = minth;
         this.second = second;
+        this.ifDialofIsShow = ifDialofIsShow;
     }
 
     public String getAppName() {
@@ -43,12 +51,28 @@ public class ChatEntity {
         this.appName = appName;
     }
 
+    public int getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(int imageID) {
+        this.imageID = imageID;
+    }
+
     public int getSecondCount() {
         return secondCount;
     }
 
     public void setSecondCount(int secondCount) {
         this.secondCount = secondCount;
+    }
+
+    public int getSecondCount2() {
+        return secondCount2;
+    }
+
+    public void setSecondCount2(int secondCount2) {
+        this.secondCount2 = secondCount2;
     }
 
     public int getHour() {
@@ -75,11 +99,11 @@ public class ChatEntity {
         this.second = second;
     }
 
-    public int getSecondCount2() {
-        return secondCount2;
+    public boolean isIfDialofIsShow() {
+        return ifDialofIsShow;
     }
 
-    public void setSecondCount2(int secondCount2) {
-        this.secondCount2 = secondCount2;
+    public void setIfDialofIsShow(boolean ifDialofIsShow) {
+        this.ifDialofIsShow = ifDialofIsShow;
     }
 }

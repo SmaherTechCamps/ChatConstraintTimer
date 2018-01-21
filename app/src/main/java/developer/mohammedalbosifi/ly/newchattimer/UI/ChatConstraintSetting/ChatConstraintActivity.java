@@ -38,6 +38,7 @@ public class ChatConstraintActivity extends BaseActivity {
     Button btnSave;
     String appName, appName2;
 
+    int resourseImageId=0;
 
     @AfterViews
     protected void onCreate() {
@@ -50,23 +51,35 @@ public class ChatConstraintActivity extends BaseActivity {
         String isSetting = bundle.getString("isSetting");
         setTitle(bundle.getString("appName"));
 
-        if (appName.contains("facebook.orca")) {
+        if (appName.contains("facebook")) {
+            resourseImageId=R.drawable.ic_facebook2;
             ivImage.setImageResource(R.drawable.ic_facebook2);
         } else if (appName.contains("whatsapp")) {
             ivImage.setImageResource(R.drawable.ic_whatsapp);
+            resourseImageId=R.drawable.ic_whatsapp;
+
         } else if (appName.contains("instagram")) {
             ivImage.setImageResource(R.drawable.ic_instagram);
-        } else if (appName.contains("facebook.lite")) {
-            ivImage.setImageResource(R.drawable.ic_facebook_lite);
+            resourseImageId=R.drawable.ic_instagram;
+
+
+
         } else if (appName.contains("twitter")) {
             ivImage.setImageResource(R.drawable.ic_twitter);
+            resourseImageId=R.drawable.ic_twitter;
+
         } else if (appName.contains("viber")) {
+            resourseImageId=R.drawable.ic_viber;
+
             ivImage.setImageResource(R.drawable.ic_viber);
         } else if (appName.contains("skype")) {
+            resourseImageId=R.drawable.ic_skype;
             ivImage.setImageResource(R.drawable.ic_skype);
         } else if (appName.contains("telegram")) {
+            resourseImageId=R.drawable.ic_telegram;
             ivImage.setImageResource(R.drawable.ic_telegram);
         } else if (appName.contains("line")) {
+            resourseImageId=R.drawable.ic_line;
             ivImage.setImageResource(R.drawable.ic_line);
         }
 
@@ -127,7 +140,7 @@ public class ChatConstraintActivity extends BaseActivity {
             if (appDao.getApp(appName2.toLowerCase()) != null) {
                 appDao.deleteApp(appDao.getApp(appName2.toLowerCase()));
             }
-            appDao.insertApp(new ChatEntity(appName2.toLowerCase(), timeSum,0, getInt(tvHour.getText().toString()), getInt(tvMints.getText().toString()), getInt(tvSecond.getText().toString())));
+            appDao.insertApp(new ChatEntity(appName2.toLowerCase(),resourseImageId, timeSum,0, getInt(tvHour.getText().toString()), getInt(tvMints.getText().toString()), getInt(tvSecond.getText().toString()),false));
             showToast("تم حفظ البيانات بنجاح", "s");
         } else {
             if (appDao.getApp(appName2.toLowerCase()) != null) {

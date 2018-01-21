@@ -34,6 +34,18 @@ import developer.mohammedalbosifi.ly.newchattimer.R;
 
      public void onCreate2() {
 
+         mPieChart.addPieSlice(new PieModel("Freetime", 15, Color.parseColor("#FE6DA8")));
+         mPieChart.addPieSlice(new PieModel("Sleep", 25, Color.parseColor("#56B7F1")));
+         mPieChart.addPieSlice(new PieModel("Work", 35, Color.parseColor("#CDA67F")));
+         mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
+         mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
+         mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
+         mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
+
+         mPieChart.startAnimation();
+
+
+
         mBarChart.addBar(new BarModel(2.3f, 0xFF123456));
         mBarChart.addBar(new BarModel(2.f,  0xFF343456));
         mBarChart.addBar(new BarModel(3.3f, 0xFF563456));
@@ -47,15 +59,9 @@ import developer.mohammedalbosifi.ly.newchattimer.R;
 
 
 
-        mPieChart.addPieSlice(new PieModel("Freetime", 15, Color.parseColor("#FE6DA8")));
-        mPieChart.addPieSlice(new PieModel("Sleep", 25, Color.parseColor("#56B7F1")));
-        mPieChart.addPieSlice(new PieModel("Work", 35, Color.parseColor("#CDA67F")));
-        mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
-        mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
-        mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
-        mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
 
-        mPieChart.startAnimation();
+
+
     }
 
 }

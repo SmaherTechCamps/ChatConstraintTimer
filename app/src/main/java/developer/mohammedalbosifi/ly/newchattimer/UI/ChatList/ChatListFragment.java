@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import developer.mohammedalbosifi.ly.newchattimer.Base.BaseFragment;
+import developer.mohammedalbosifi.ly.newchattimer.DataBase.AmountOfRunTime;
 import developer.mohammedalbosifi.ly.newchattimer.R;
 import developer.mohammedalbosifi.ly.newchattimer.Utils.Utility;
 
@@ -66,15 +68,13 @@ public class ChatListFragment extends BaseFragment {
         String packageName = "";
         for (ApplicationInfo packageInfo : packages) {
             packageName = packageInfo.packageName;
-            if (packageInfo.packageName.toLowerCase().contains("facebook.orca")) {
+            if (packageInfo.packageName.toLowerCase().contains("facebook")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_facebook2, "Facebook", isSaveInDB("Facebook")));
             } else if (packageName.toLowerCase().contains("whatsapp")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_whatsapp, "WhatsApp", isSaveInDB("WhatsApp")));
             } else if (packageName.toLowerCase().contains("instagram")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_instagram, "Instagram", isSaveInDB("Instagram")));
-            } else if (packageName.toLowerCase().contains("facebook.lite")) {
-                chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_facebook_lite, "Facebook Lite", isSaveInDB("Facebook Lite")));
-            } else if (packageName.toLowerCase().contains("twitter")) {
+            }  else if (packageName.toLowerCase().contains("twitter")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_twitter, "Twitter", isSaveInDB("Twitter")));
             } else if (packageName.toLowerCase().contains("viber")) {
                 chatListItems.add(new ChatListItem(packageInfo.packageName, R.drawable.ic_viber, "Viber", isSaveInDB("Viber")));
@@ -130,7 +130,42 @@ public class ChatListFragment extends BaseFragment {
 
                 }
             }));
+
+            for (int i=0;i<chatListItems.size();i++){
+                setRunTimeForApp(chatListItems.get(i).getAppName().toLowerCase());
+                Toast.makeText(appInstanse, dbContext.getAppDao().getAppListRunTime().get(0).getAppColor(), Toast.LENGTH_SHORT).show();
+            }
         }
+
+    }
+
+    public void setRunTimeForApp(String appName){
+        if (dbContext.getAppDao().getAppRunTime(appName.toLowerCase())==null){
+            dbContext.getAppDao().insertRunTimeApp(new AmountOfRunTime(appName.toLowerCase(),getColorForApp(appName),0));
+        }
+    }
+
+    public String getColorForApp(String appName){
+        String color="";
+        if (appName.toLowerCase().contains("facebook")) {
+            color="#3A559F";
+        } else if (appName.toLowerCase().contains("whatsapp")) {
+            color="#1BD741";
+        } else if (appName.toLowerCase().contains("instagram")) {
+            color="#C536A4";
+        }  else if (appName.toLowerCase().contains("twitter")) {
+            color="#50ABF1";
+        } else if (appName.toLowerCase().contains("viber")) {
+            color="#7D3DAF";
+        } else if (appName.toLowerCase().contains("skype")) {
+            color="#15ACE5";
+        } else if (appName.toLowerCase().contains("telegram")) {
+            color="#61A8DE";
+        } else if (appName.toLowerCase().contains("line")) {
+            color="#00C200";
+
+        }
+        return color;
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)

@@ -1,13 +1,23 @@
 package developer.mohammedalbosifi.ly.newchattimer;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.IBinder;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import org.androidannotations.annotations.EService;
@@ -16,9 +26,12 @@ import org.androidannotations.annotations.UiThread;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.goncalves.pugnotification.notification.PugNotification;
+import developer.mohammedalbosifi.ly.newchattimer.DataBase.AmountOfRunTime;
 import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDao;
 import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDataBase;
 import developer.mohammedalbosifi.ly.newchattimer.DataBase.ChatEntity;
+import developer.mohammedalbosifi.ly.newchattimer.UI.Main.Main2Activity_;
 
 @EService
 public class AppServices extends Service {
@@ -30,6 +43,7 @@ public class AppServices extends Service {
     List<ActivityManager.RunningTaskInfo> tasks;
     List<ActivityManager.RunningAppProcessInfo> procInfos;
     AppDao appDao;
+
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -83,20 +97,44 @@ public class AppServices extends Service {
         tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);
         for (int i = 0; i < tasks.size(); i++) {
 
+            ce = appDao.getApp(appName.toLowerCase());
             if (tasks.get(i).baseActivity.toString().toLowerCase().contains(appName.toLowerCase())) {
-                ce = appDao.getApp(appName.toLowerCase());
                 secondCount2 = ce.getSecondCount2();
-                Toast.makeText(this, secondCount2+"", Toast.LENGTH_SHORT).show();
                 ce.setSecondCount2(secondCount2 + 5);
-                Toast.makeText(this, ce.getSecondCount2()+"", Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, ce.getSecondCount()+"", Toast.LENGTH_SHORT).show();
-                appDao.updateApp(ce);
+                Toast.makeText(this, ce.getSecondCount2() + "", Toast.LENGTH_SHORT).show();
                 if (secondCount2 >= ce.getSecondCount()) {
-                    Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show();
+                    PugNotification.with(this)
+                            .load()
+                            .title("title")
+                            .message("titletitletitletitletitletitletitle")
+                            .smallIcon(R.drawable.pugnotification_ic_launcher)
+                            .largeIcon(R.drawable.pugnotification_ic_launcher)
+                            .flags(Notification.DEFAULT_ALL)
+                            .simple()
+                            .build();
+
+                } else {
+
+                    appDao.updateApp(ce);
                 }
             }
         }
 
     }
+
+    @UiThread
+    public void CalcRunTime() {
+        List<AmountOfRunTime> amountOfRunTimes = appDao.getAppListRunTime();
+        AmountOfRunTime amountOfRunTime;
+        tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);
+        for (int i = 0; i < amountOfRunTimes.size(); i++) {
+
+            if (tasks.get(i).baseActivity.toString().toLowerCase().contains(amountOfRunTimes.get(i).getAppName().toLowerCase())) {
+
+            }
+        }
+
+    }
+
 }
 

@@ -19,14 +19,14 @@ public class AboutFragment extends Fragment {
 
     @Click
     public void txt(){
-        expandable_layout.expand(true);
-        expandable_layout2.expand(false);
+        expandable_layout.toggle(true);
+        expandable_layout2.toggle(true);
     }
 
     @Click
     public void txt2(){
-        expandable_layout.expand(false);
-        expandable_layout2.expand(true);
+        expandable_layout.toggle(true);
+        expandable_layout2.toggle(true);
     }
 
     @AfterViews

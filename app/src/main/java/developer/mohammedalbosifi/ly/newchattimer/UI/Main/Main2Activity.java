@@ -114,6 +114,8 @@ public class Main2Activity extends BaseActivity
 
         if (id == R.id.nav_aaps_list) {
             EventBus.getDefault().postSticky(new EventMessage(true));
+            findViewById(R.id.frag1).setVisibility(View.VISIBLE);
+            findViewById(R.id.frag2).setVisibility(View.GONE);
         } else if (id == R.id.nav_charts) {
             startActivity(new Intent(this,ChartActivity.class));
         } else if (id == R.id.nav_share) {
@@ -121,8 +123,6 @@ public class Main2Activity extends BaseActivity
         } else if (id == R.id.nav_about) {
             findViewById(R.id.frag1).setVisibility(View.GONE);
             findViewById(R.id.frag2).setVisibility(View.VISIBLE);
-        } else if (id == R.id.about_developers) {
-
         }
 
         drawer.closeDrawer(GravityCompat.START);

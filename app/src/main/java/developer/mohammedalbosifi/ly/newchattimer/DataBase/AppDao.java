@@ -32,6 +32,16 @@ public interface AppDao {
 
     @Query("delete from ChatEntity where appName=:appName ")
     void deleteAppByName(String appName);
+//
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertRunTimeApp(AmountOfRunTime... mountOfRunTime);
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void updateRunTimeApp(AmountOfRunTime... mountOfRunTime);
 
+    @Query("select * from AmountOfRunTime")
+    List<AmountOfRunTime> getAppListRunTime();
+
+    @Query("select * from AmountOfRunTime where appName=:appName limit 1")
+    AmountOfRunTime getAppRunTime(String appName);
 }
