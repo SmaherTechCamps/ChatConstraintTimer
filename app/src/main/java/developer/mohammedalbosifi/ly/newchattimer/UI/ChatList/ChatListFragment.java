@@ -132,15 +132,15 @@ public class ChatListFragment extends BaseFragment {
             }));
 
             for (int i=0;i<chatListItems.size();i++){
-                setRunTimeForApp(chatListItems.get(i).getAppName().toLowerCase());
-                Toast.makeText(appInstanse, dbContext.getAppDao().getAppListRunTime().get(0).getAppColor(), Toast.LENGTH_SHORT).show();
-            }
+                setRunTimeForApp(chatListItems.get(i).getAppPackage().toLowerCase());
+             }
         }
 
     }
 
     public void setRunTimeForApp(String appName){
         if (dbContext.getAppDao().getAppRunTime(appName.toLowerCase())==null){
+            Toast.makeText(appInstanse, appName, Toast.LENGTH_SHORT).show();
             dbContext.getAppDao().insertRunTimeApp(new AmountOfRunTime(appName.toLowerCase(),getColorForApp(appName),0));
         }
     }

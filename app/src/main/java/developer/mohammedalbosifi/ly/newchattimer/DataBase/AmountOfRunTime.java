@@ -52,4 +52,12 @@ public class AmountOfRunTime {
     public void setSecondCount(int secondCount) {
         this.secondCount = secondCount;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

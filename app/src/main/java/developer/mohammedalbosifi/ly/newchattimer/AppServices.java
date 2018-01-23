@@ -31,7 +31,6 @@ import developer.mohammedalbosifi.ly.newchattimer.DataBase.AmountOfRunTime;
 import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDao;
 import developer.mohammedalbosifi.ly.newchattimer.DataBase.AppDataBase;
 import developer.mohammedalbosifi.ly.newchattimer.DataBase.ChatEntity;
-import developer.mohammedalbosifi.ly.newchattimer.UI.Main.Main2Activity_;
 
 @EService
 public class AppServices extends Service {
@@ -62,8 +61,9 @@ public class AppServices extends Service {
             public void run() {
                 while (true) {
                     tt();
+                    CalcRunTime();
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(60000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -76,13 +76,15 @@ public class AppServices extends Service {
 
 
     public void tt() {
-        List<ChatEntity> chatEntities = new ArrayList<>();
-        chatEntities = dbContext.getAppDao().getAppList();
+        List<ChatEntity> chatEntities =dbContext.getAppDao().getAppList();
         if (chatEntities.size() > 0) {
             for (ChatEntity ce : chatEntities) {
                 isRun(ce.getAppName());
             }
         }
+
+
+
 
     }
 
@@ -100,13 +102,13 @@ public class AppServices extends Service {
             ce = appDao.getApp(appName.toLowerCase());
             if (tasks.get(i).baseActivity.toString().toLowerCase().contains(appName.toLowerCase())) {
                 secondCount2 = ce.getSecondCount2();
-                ce.setSecondCount2(secondCount2 + 5);
-                Toast.makeText(this, ce.getSecondCount2() + "", Toast.LENGTH_SHORT).show();
+                ce.setSecondCount2(secondCount2 + 60);
+//                Toast.makeText(this, ce.getSecondCount2() + "", Toast.LENGTH_SHORT).show();
                 if (secondCount2 >= ce.getSecondCount()) {
                     PugNotification.with(this)
                             .load()
-                            .title("title")
-                            .message("titletitletitletitletitletitletitle")
+                            .title("مؤقت تطبيقات الشات")
+                            .message("أنتهت المدة المحددة للتطبيق "+"   "+appName)
                             .smallIcon(R.drawable.pugnotification_ic_launcher)
                             .largeIcon(R.drawable.pugnotification_ic_launcher)
                             .flags(Notification.DEFAULT_ALL)
@@ -127,11 +129,17 @@ public class AppServices extends Service {
         List<AmountOfRunTime> amountOfRunTimes = appDao.getAppListRunTime();
         AmountOfRunTime amountOfRunTime;
         tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);
-        for (int i = 0; i < amountOfRunTimes.size(); i++) {
-
-            if (tasks.get(i).baseActivity.toString().toLowerCase().contains(amountOfRunTimes.get(i).getAppName().toLowerCase())) {
-
+        try{
+            for (int i = 0; i < amountOfRunTimes.size(); i++) {
+                if (tasks.get(i).baseActivity.toString().toLowerCase().contains(amountOfRunTimes.get(i).getAppName().toLowerCase())) {
+//                    Toast.makeText(this, amountOfRunTimes.get(i).getAppName(), Toast.LENGTH_SHORT).show();
+                    amountOfRunTime= appDao.getAppRunTime(amountOfRunTimes.get(i).getAppName().toLowerCase());
+                    amountOfRunTime.setSecondCount(amountOfRunTimes.get(i).getSecondCount()+1);
+                    appDao.updateRunTimeApp(amountOfRunTime);
+                }
             }
+        }catch (Exception e){
+
         }
 
     }

@@ -28,7 +28,8 @@ import developer.mohammedalbosifi.ly.newchattimer.AppServices_;
 import developer.mohammedalbosifi.ly.newchattimer.Base.BaseActivity;
 import developer.mohammedalbosifi.ly.newchattimer.R;
 import developer.mohammedalbosifi.ly.newchattimer.UI.ChartsActivity.ChartActivity;
- import developer.mohammedalbosifi.ly.newchattimer.UI.ChatList.EventMessage;
+import developer.mohammedalbosifi.ly.newchattimer.UI.ChartsActivity.ChartActivity_;
+import developer.mohammedalbosifi.ly.newchattimer.UI.ChatList.EventMessage;
 import developer.mohammedalbosifi.ly.newchattimer.Utils.Utility;
 
 @EActivity(R.layout.activity_main2)
@@ -117,7 +118,7 @@ public class Main2Activity extends BaseActivity
             findViewById(R.id.frag1).setVisibility(View.VISIBLE);
             findViewById(R.id.frag2).setVisibility(View.GONE);
         } else if (id == R.id.nav_charts) {
-            startActivity(new Intent(this,ChartActivity.class));
+            startActivity(new Intent(this,ChartActivity_.class));
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_about) {

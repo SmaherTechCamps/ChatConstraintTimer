@@ -22,14 +22,14 @@
             android:name=".UI.Main.Main2Activity_"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".UI.ChartsActivity.ChartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".UI.ChartsActivity.ChartActivity_">
+
         </activity>
 
         <activity android:name=".UI.ChartsActivity.ChatView">
