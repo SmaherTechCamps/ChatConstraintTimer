@@ -32,32 +32,26 @@ public class ChartActivity extends BaseActivity {
     PieChart mPieChart;
 
 
-//    @Override
-//    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_chart);
-//        mBarChart = (BarChart) findViewById(R.id.mBarChart);
-//        mPieChart = (PieChart) findViewById(R.id.mPieChart);
-//        onCreate2();
-//    }
 
     @AfterViews
     public void onCreate2() {
         setTitle("المخطط البياني");
         List<AmountOfRunTime> am = dbContext.getAppDao().getAppListRunTime();
-         Float minutes=0.6f;
+         Float minutes,minutes2=0.0f;
         txt.setText("");
         for (int i = 0; i < am.size(); i++) {
             minutes=(am.get(i).getSecondCount()/60f);
+            minutes2=(am.get(i).getSecondCount()/60f*30f);
 
-            txt.append(am.get(i).getAppName()+"    بمعدل "+minutes+"ساعة"+"\n");
+            txt.append("  \n  "+" بمعدل "+minutes+" يوميا "+am.get(i).getAppName());
+            txt.append("  \n  "+"و بمعدل "+minutes2+" شهريا "+am.get(i).getAppName());
             mPieChart.addPieSlice(new PieModel(am.get(i).getAppName(),minutes, Color.parseColor(am.get(i).getAppColor())));
+
 
         }
 
         mPieChart.startAnimation();
 
-//        mBarChart.startAnimation();
 
 
     }

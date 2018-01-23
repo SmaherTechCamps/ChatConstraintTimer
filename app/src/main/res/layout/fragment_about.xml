@@ -48,8 +48,12 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:lineSpacingExtra="@dimen/_5sdp"
-                    android:text="xlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsd"/>
-            </LinearLayout>
+                    android:textSize="@dimen/_13sdp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:textColor="@color/colorPrimary"
+                    android:text="هو تطبيق يتيح لك تنظيم ومراقبة فترات أستخدامك لأحد برامج الشات او المراسلة ، ويمكنك من تحديد الوقت اللازم لاستخدام اي من هذه التطبيقات
+كذلك يقوم بحساب معدل أستخدام لكل تطبيقات بقيم تقريبية شهرية - يومية"
+/>            </LinearLayout>
         </net.cachapa.expandablelayout.ExpandableLayout>
     </LinearLayout>
     <LinearLayout
@@ -94,8 +98,14 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:lineSpacingExtra="@dimen/_5sdp"
-                    android:text="xlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsdxlcvklnvlmsd"/>
-            </LinearLayout>
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_15sdp"
+                    android:lineSpacingMultiplier="2"
+                    android:text="قام بالعمل علي هذا التطبيق وأنجازة الطالبتان :
+حوا صالح أحمد أرضي      02120516
+صالحة أبوبكر محمد علي   02120356"
+                    />
+             </LinearLayout>
         </net.cachapa.expandablelayout.ExpandableLayout>
     </LinearLayout>
 </LinearLayout>

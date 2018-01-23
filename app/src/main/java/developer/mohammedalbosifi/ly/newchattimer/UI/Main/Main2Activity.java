@@ -35,13 +35,13 @@ import developer.mohammedalbosifi.ly.newchattimer.Utils.Utility;
 @EActivity(R.layout.activity_main2)
 public class Main2Activity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-     @ViewById
+    @ViewById
     Toolbar toolbar;
     @ViewById
     DrawerLayout drawer;
     @ViewById
     NavigationView navigationView;
-
+    Menu menu;
     @AfterViews
     protected void afterView() {
 
@@ -58,7 +58,6 @@ public class Main2Activity extends BaseActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-
 
 
     }
@@ -86,19 +85,16 @@ public class Main2Activity extends BaseActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
+        this.menu=menu;
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             EventBus.getDefault().postSticky(new EventMessage(true));
             return true;
@@ -117,11 +113,18 @@ public class Main2Activity extends BaseActivity
             EventBus.getDefault().postSticky(new EventMessage(true));
             findViewById(R.id.frag1).setVisibility(View.VISIBLE);
             findViewById(R.id.frag2).setVisibility(View.GONE);
+            menu.findItem(R.id.action_settings).setVisible(true);
         } else if (id == R.id.nav_charts) {
-            startActivity(new Intent(this,ChartActivity_.class));
+            startActivity(new Intent(this, ChartActivity_.class));
         } else if (id == R.id.nav_share) {
-
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            String shareBody ="رابط تطبيق مؤقت برامج الشات .... سارع في التنزيل ";
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "مشاركة التطبيق");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(sharingIntent, "شارك بواسطة"));
         } else if (id == R.id.nav_about) {
+            menu.findItem(R.id.action_settings).setVisible(false);
             findViewById(R.id.frag1).setVisibility(View.GONE);
             findViewById(R.id.frag2).setVisibility(View.VISIBLE);
         }
