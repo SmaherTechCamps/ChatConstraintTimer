@@ -26,7 +26,7 @@
             android:id="@+id/expandable_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:el_duration="1000"
+            app:el_duration="1500"
             app:el_expanded="true"
             android:layout_marginTop="@dimen/_5sdp"
             app:el_parallax="0.5"
@@ -73,7 +73,7 @@
             android:id="@+id/expandable_layout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:el_duration="1000"
+            app:el_duration="1500"
             app:el_expanded="false"
             android:layout_marginTop="@dimen/_10sdp"
             app:el_parallax="0.5"
@@ -86,7 +86,7 @@
                     android:layout_gravity="center"
                     android:layout_width="@dimen/_150sdp"
                     android:layout_height="@dimen/_150sdp"
-                    app:srcCompat="@drawable/ic_tablet"/>
+                    app:srcCompat="@drawable/ic_teamwork_1"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
